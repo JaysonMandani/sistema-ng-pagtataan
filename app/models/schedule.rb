@@ -1,7 +1,7 @@
 class Schedule < ActiveRecord::Base
   belongs_to :lesson
   belongs_to :teacher
-  has_many :subscription
+  has_many :subscriptions
 
   before_create :create_daterange
 
@@ -9,7 +9,7 @@ class Schedule < ActiveRecord::Base
     self.daterange = "#{self.starts_at} - #{self.ends_at}"
   end
 
-  def self.search(search)
-    joins(:teacher).merge(Teacher.where("name like ?", "%#{search}%"))
-  end
+  # def self.search(search)
+  #   joins(:teacher).merge(Teacher.where("name like ?", "%#{search}%"))
+  # end
 end

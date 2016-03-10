@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Subscription, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "ActiveRecord associations" do
+    let(:subscription) {build(:subscription)}
+
+    it { expect(subscription).to belong_to(:member) }
+    it { expect(subscription).to belong_to(:schedule) }
+  end
 end
