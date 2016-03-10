@@ -1,3 +1,12 @@
-<h1>Teachers#index</h1>
-<p>Find me in app/views/teachers/index.html.erb</p>
-<%= link_to "Sign out", destroy_member_session_path, :method => :delete %>
+<div class="panel panel-default">
+  <div class="panel-heading">Login As:</div>
+  <div class="panel-body">
+    <div class="text-center">
+      <% @schedules.each do |schedule| %>
+        <%= schedule.lesson.name %>
+        <%= schedule.lesson.description %>
+        <%= schedule.daterange %>
+      <% end %>
+    </div>
+  </div>
+</div>

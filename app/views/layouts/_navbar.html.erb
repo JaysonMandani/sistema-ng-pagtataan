@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        Booking System
+      </a>
+    </div>
+    <% if current_member.present? || current_teacher.present? %>
+      <ul class="nav navbar-nav navbar-right">
+        <li id="fat-menu" class="dropdown">
+          <a id="drop3" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Account <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="drop3">
+            <% if current_teacher.present? %>
+              <li><a href="/admin">Manage Lesson</a></li>
+              <li><a href="#">Manage Account</a></li>
+            <% else %>
+              <li><a href="#">Manage Account</a></li>
+            <% end%>
+            <li role="separator" class="divider"></li>
+            <% if current_member.present? %>
+              <li><%= link_to 'Sign Out', destroy_member_session_path, method: :delete %></li>
+            <% else%>
+              <li><%= link_to 'Sign Out', destroy_teacher_session_path, method: :delete %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</nav>

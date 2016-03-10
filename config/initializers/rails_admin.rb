@@ -47,11 +47,19 @@ RailsAdmin.config do |config|
 
   config.model Schedule do
     create do
-      exclude_fields :subscription
+      exclude_fields :subscription, :daterange
     end
 
     update do
-      exclude_fields :subscription
+      exclude_fields :subscription, :daterange
+    end
+  end
+
+  config.model Lesson do
+    list do
+      def render
+        bindings[:view].render :partial => "rails_admin/main/_lesson_list", :locals => {:field => self}
+      end
     end
   end
 
