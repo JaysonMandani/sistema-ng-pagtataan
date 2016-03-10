@@ -32,7 +32,7 @@
           <td><%= "#{schedule.daterange.split(" - ")[0].to_datetime.strftime("%B %d, %Y %I:%M %p")} - #{schedule.daterange.split(" - ")[1].to_datetime.strftime("%B %d, %Y %I:%M %p")}" %></td>
           <td>
             <% if current_member.subscribed? schedule.id %>
-              <%= link_to 'Unsubscribe', unsubscribe_path(schedule.id), class: 'btn btn-warning', data: {confirm: "Are you sure?"} %>
+              <%= link_to 'Cancel', unsubscribe_path(schedule.id), class: 'btn btn-warning', data: {confirm: "Are you sure?"} %>
             <% else %>
               <%= link_to 'Subscribe', subscribe_path(schedule.id), class: 'btn btn-primary' %>
             <% end %>
