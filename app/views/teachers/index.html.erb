@@ -1,12 +1,24 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Login As:</div>
+  <div class="panel-heading">Your Schedules</div>
   <div class="panel-body">
-    <div class="text-center">
-      <% @schedules.each do |schedule| %>
-        <%= schedule.lesson.name %>
-        <%= schedule.lesson.description %>
-        <%= schedule.daterange %>
+    <% @schedules.each do |date, values| %>
+      <% if date.to_date.future? %>
+        <div class="panel panel-default">
+          <div class="panel-heading"><%= "#{date.split(" - ")[0].to_datetime.strftime("%B %d, %Y %I:%M %p")} - #{date.split(" - ")[1].to_datetime.strftime("%B %d, %Y %I:%M %p")}" %></div>
+          <div class="panel-body">
+            <%= current_teacher.name %>
+            <div class="text-center">
+              <div class="row">
+                <% values.each do |value| %>
+                  <%= value.lesson.name %></br>
+                  <%= value.lesson.description %></br>
+                  <%= link_to "Cancel", schedule_path(value), method: :delete, class: "btn btn-xs btn-warning", data: {confirm: 'It will be deleted are you sure?'} %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>

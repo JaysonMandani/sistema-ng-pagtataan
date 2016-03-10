@@ -5,4 +5,9 @@ class Member < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :subscriptions
+
+  def subscribed? schedule_id
+    subscription = Subscription.where(schedule_id: schedule_id)
+    subscription.empty? ? false : true
+  end
 end

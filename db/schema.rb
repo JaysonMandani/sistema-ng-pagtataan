@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310071444) do
+ActiveRecord::Schema.define(version: 20160310165503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,9 +52,11 @@ ActiveRecord::Schema.define(version: 20160310071444) do
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string   "daterange"
+    t.integer  "teacher_id"
   end
 
   add_index "schedules", ["lesson_id"], name: "index_schedules_on_lesson_id", using: :btree
+  add_index "schedules", ["teacher_id"], name: "index_schedules_on_teacher_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "details"
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160310071444) do
     t.integer  "schedule_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.date     "date"
   end
 
   add_index "subscriptions", ["member_id"], name: "index_subscriptions_on_member_id", using: :btree
@@ -80,6 +83,9 @@ ActiveRecord::Schema.define(version: 20160310071444) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "name"
+    t.string   "nationality"
+    t.string   "gender"
   end
 
   add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true, using: :btree
@@ -87,6 +93,7 @@ ActiveRecord::Schema.define(version: 20160310071444) do
 
   add_foreign_key "lessons", "teachers"
   add_foreign_key "schedules", "lessons"
+  add_foreign_key "schedules", "teachers"
   add_foreign_key "subscriptions", "members"
   add_foreign_key "subscriptions", "schedules"
 end

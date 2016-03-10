@@ -54,3 +54,4 @@ end
 gem 'devise'
 gem 'awesome_print'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'kaminari'
