@@ -53,5 +53,4 @@ end
 
 gem 'devise'
 gem 'awesome_print'
-gem 'rails_admin'
 gem 'bootstrap-sass', '~> 3.3.6'
