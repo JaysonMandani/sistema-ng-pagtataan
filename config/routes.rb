@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_scope :member do
     authenticated :member do
-      root 'members#index', as: :member_root
+      root 'schedules#index', as: :member_root
     end
   end
 

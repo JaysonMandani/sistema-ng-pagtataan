@@ -1,6 +1,5 @@
 class MembersController < ApplicationController
   def index
-    @teachers = Teacher.all
   end
 
   def show

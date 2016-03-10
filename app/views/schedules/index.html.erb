@@ -1,0 +1,49 @@
+<%= search_form_for @q, class: "navbar-form navbar-right" do |f| %>
+  <div class="form-group">
+    <%= f.search_field :teacher_name_cont, placeholder: "Name", class: "form-control" %>
+
+    <%= f.search_field :teacher_gender_cont, placeholder: "Gender", class: "form-control" %>
+
+    <%= f.search_field :teacher_nationality_cont, placeholder: "Nationality", class: "form-control" %>
+
+    <%= f.search_field :daterange_cont, placeholder: "Schedule", class: "form-control" %>
+  </div>
+
+  <%= f.submit "search", class: "btn btn-default" %>
+<% end %>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Teacher Name</th>
+      <th>Description</th>
+      <th>Schedule Date/Time Range</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <% if schedule.date.to_date.future? %>
+        <tr>
+          <th><%= schedule.teacher.id %></th>
+          <td><%= schedule.teacher.name %></td>
+          <td><%= schedule.lesson.description %></td>
+          <td><%= "#{schedule.daterange.split(" - ")[0].to_datetime.strftime("%B %d, %Y %I:%M %p")} - #{schedule.daterange.split(" - ")[1].to_datetime.strftime("%B %d, %Y %I:%M %p")}" %></td>
+          <td>
+            <% if current_member.subscribed? schedule.id %>
+              <%= link_to 'Unsubscribe', unsubscribe_path(schedule.id), class: 'btn btn-warning', data: {confirm: "Are you sure?"} %>
+            <% else %>
+              <%= link_to 'Subscribe', subscribe_path(schedule.id), class: 'btn btn-primary' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @schedules %>
+<div class="text-center">
+  <%= page_entries_info @schedules %>
+</div>
