@@ -6,7 +6,7 @@ RSpec.describe Schedule, type: :model do
 
     it { expect(schedule).to belong_to(:teacher) }
     it { expect(schedule).to belong_to(:lesson) }
-    it { expect(schedule).to have_many(:subscriptions) }
+    it { expect(schedule).to have_many(:subscriptions).dependent(:destroy) }
   end
 
   context "callbacks" do

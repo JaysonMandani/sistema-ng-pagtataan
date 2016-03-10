@@ -1,7 +1,7 @@
 class Schedule < ActiveRecord::Base
   belongs_to :lesson
   belongs_to :teacher
-  has_many :subscriptions
+  has_many :subscriptions, dependent: :destroy
 
   before_create :create_daterange
 

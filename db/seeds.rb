@@ -17,15 +17,15 @@ schedules = [
     },
     {
       date: Date.today,
-      starts_at: "#{Date.today} 2:30 PM".to_datetime,
-      ends_at: "#{Date.today} 3:00 PM".to_datetime,
+      starts_at: "#{Date.today} 3:30 PM".to_datetime,
+      ends_at: "#{Date.today} 4:00 PM".to_datetime,
       lesson_id: lesson.id,
       teacher_id: Teacher.first.id
     },
     {
       date: Date.today,
-      starts_at: "#{Date.today} 3:30 PM".to_datetime,
-      ends_at: "#{Date.today} 4:00 PM".to_datetime,
+      starts_at: "#{Date.today} 4:30 PM".to_datetime,
+      ends_at: "#{Date.today} 5:00 PM".to_datetime,
       lesson_id: lesson.id,
       teacher_id: Teacher.first.id
     },
